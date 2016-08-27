@@ -14,14 +14,17 @@ Gem::Specification.new do |s|
   s.files       = [
     'bin/off_the_grid_editor',
     'lib/off_the_record.rb',
-    'lib/off_the_record/version.rb',
-    'lib/off_the_record/grid_resource.rb',
-    'lib/off_the_record/host.rb',
-    'lib/off_the_record/host_group.rb',
     'lib/off_the_record/admin_host.rb',
+    'lib/off_the_record/erb_helpers.rb',
     'lib/off_the_record/execute_host.rb',
+    'lib/off_the_record/grid_resource.rb',
+    'lib/off_the_record/host_group.rb',
+    'lib/off_the_record/host.rb',
+    'lib/off_the_record/project.rb',
     'lib/off_the_record/submit_host.rb',
+    'lib/off_the_record/templates/user.rb',
     'lib/off_the_record/user.rb',
+    'lib/off_the_record/version.rb',
     'LICENSE'
   ]
 

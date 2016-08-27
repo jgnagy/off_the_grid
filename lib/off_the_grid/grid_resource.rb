@@ -1,11 +1,15 @@
 module OffTheGrid
   module GridResource
+    def initalize(name)
+      @name = name
+    end
+
     def self.list
       []
     end
 
     def new?
-      true
+      !self.class.list.map(&:name).include?(hostname)
     end
 
     def save(safe = true)
