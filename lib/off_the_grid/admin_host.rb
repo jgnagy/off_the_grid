@@ -5,6 +5,10 @@ module OffTheGrid
       `qconf -sh`.chomp.split("\n").sort.collect {|name| self.new(name)}
     end
 
+    def details
+      `qconf -sa #{name}`.chomp
+    end
+
     private
 
     # Add an SGE administrative host

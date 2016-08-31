@@ -7,8 +7,12 @@ module OffTheGrid
       @hostname = hostname
     end
 
-    def new?
-      !self.class.list.map(&:hostname).include?(hostname)
+    def name
+      hostname
+    end
+
+    def name=(hname)
+      hostname = hname
     end
   end
 end
