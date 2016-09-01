@@ -5,7 +5,7 @@ module OffTheGrid
 
     # Get the list of SGE projects
     def self.list
-      `qconf -sprjl`.chomp.split("\n").sort.collect {|name| self.new(name)}
+      `qconf -sprjl`.chomp.split("\n").sort.collect {|name| self.new(name) }
     end
 
     def details
@@ -13,13 +13,13 @@ module OffTheGrid
     end
 
     def acls
-      details.split("\n").select {|line| line.match(/^acl/)}.first.split(' ')[1..-1].each do |acl|
+      extract_detail(:acl).each do |acl|
         AccessList.new(acl)
       end
     end
 
     def xacls
-      details.split("\n").select {|line| line.match(/^xacl/)}.first.split(' ')[1..-1].each do |acl|
+      extract_detail(:xacl).each do |acl|
         AccessList.new(acl)
       end
     end

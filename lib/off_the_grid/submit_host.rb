@@ -5,10 +5,6 @@ module OffTheGrid
       `qconf -ss`.chomp.split("\n").sort.collect {|name| self.new(name)}
     end
 
-    def details
-      `qconf -ss #{name}`.chomp
-    end
-
     private
 
     # Add an SGE submit host

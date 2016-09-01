@@ -10,10 +10,9 @@ Gem::Specification.new do |s|
   s.summary     = 'Off The Grid can perform basic management tasks for SGE.'
   s.authors     = ['Jonathan Gnagy', 'Daniel Schaaff']
   s.email       = 'jgnagy@knuedge.com'
-  s.bindir      = 'bin'
   s.files       = [
-    'bin/off_the_grid_editor',
     'lib/off_the_record.rb',
+    'lib/off_the_record/access_list.rb',
     'lib/off_the_record/admin_host.rb',
     'lib/off_the_record/erb_helpers.rb',
     'lib/off_the_record/execute_host.rb',
@@ -22,6 +21,8 @@ Gem::Specification.new do |s|
     'lib/off_the_record/host.rb',
     'lib/off_the_record/project.rb',
     'lib/off_the_record/submit_host.rb',
+    'lib/off_the_record/templates/execute_host.rb',
+    'lib/off_the_record/templates/project.rb',
     'lib/off_the_record/templates/user.rb',
     'lib/off_the_record/user.rb',
     'lib/off_the_record/version.rb',
@@ -30,8 +31,6 @@ Gem::Specification.new do |s|
 
   s.license     = 'MIT'
   s.platform    = Gem::Platform::RUBY
-
-  s.executables << 'off_the_grid_editor'
 
   s.required_ruby_version = '~> 2.2'
   s.post_install_message  = 'Thanks for installing Off The Grid!'

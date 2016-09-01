@@ -32,6 +32,24 @@ module OffTheGrid
       end
     end
 
+    def extract_detail(detail, options = {})
+      options[:split_on] ||= /,|\s/
+      return [] unless respond_to?(:details)
+
+      values = []
+      details.split("\n").each do |line|
+        if values.size > 0
+          # Add follow-up lines from the weird word-wrapped output
+          line.match(/^( ){8}/) ? values << line : break
+        end
+        values << line if line.match /^#{detail.to_s} /
+      end
+      values.join
+            .gsub(/(#{detail.to_s} |\\|\s{2,})/, '')
+            .split(options[:split_on])
+            .uniq - ['']
+    end
+
     def validate_before_save
       new?
     end

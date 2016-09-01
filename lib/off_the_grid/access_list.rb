@@ -5,7 +5,7 @@ module OffTheGrid
 
     # Get the list of SGE access lists
     def self.list
-      `qconf -sul`.chomp.split("\n").sort.collect {|name| self.new(name)}
+      `qconf -sul`.chomp.split("\n").sort.collect {|name| self.new(name) }
     end
 
     def details
@@ -17,7 +17,7 @@ module OffTheGrid
         @unsaved_users ||= []
       else
         # Only returns users
-        extracted_entries.select {|entry| !entry.match /^@/ }.collect {|user| User.new(user) }
+        extract_detail(:entries).select {|e| !e.match /^@/ }.collect {|user| User.new(user) }
       end
     end
 
@@ -26,14 +26,12 @@ module OffTheGrid
         @unsaved_users ||= []
         @unsaved_users << user
       else
-        users.include?(user) ? true : system("qconf -au #{user.name}")
+        users.include?(user) ? true : system("qconf -au #{user.name} #{name}")
       end
     end
 
-    alias_method :<<, :add_user
-
     def remove_user(user)
-      users.include?(user) ? system("qconf -du #{user.name}") : true
+      users.include?(user) ? system("qconf -du #{user.name} #{name}") : true
     end
 
     private
@@ -41,19 +39,7 @@ module OffTheGrid
     # Add an SGE access list
     def add
       fail "Creating ACL Requires One or More Users" if users.empty?
-      system("qconf -aul #{users.map(&:name).join(' ')}")
-    end
-
-    def extracted_entries
-      entries = []
-      details.split("\n").each do |line|
-        if entries.size > 0
-          # Add follow-up lines from the weird word-wrapped output
-          line.match(/^( ){8}/) ? entries << line : break
-        end
-        entries << line if line.match /^entries/
-      end
-      entries.join.gsub(/(entries|\s|\\)/, '').split(',')
+      system("qconf -au #{users.map(&:name).join(',')} #{name}")
     end
 
     # Remove an SGE access list

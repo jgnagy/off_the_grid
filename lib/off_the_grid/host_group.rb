@@ -16,6 +16,12 @@ module OffTheGrid
       `qconf -shgrp_tree #{name}`.chomp
     end
 
+    def hosts
+      extract_detail(:hostlist).map {|host| ExecuteHost.new(host) }
+    end
+
+    # TODO Adding a Host to a HostGroup...
+
     private
 
     # Add an SGE host group
