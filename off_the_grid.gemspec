@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '~> 2.2'
   s.post_install_message  = 'Thanks for installing Off The Grid!'
+  s.homepage = 'https://github.com/knuedge/off_the_grid'
 
   # Dependencies
   #s.add_runtime_dependency 'colorize',    '~> 0.7'
