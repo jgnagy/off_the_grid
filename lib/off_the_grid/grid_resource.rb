@@ -19,7 +19,7 @@ module OffTheGrid
         raise "Validation Failed" unless validate_before_save
         add
       else
-        add # don't bother checking if the host exists
+        add # don't bother checking if the resource exists
       end
     end
 
@@ -28,7 +28,7 @@ module OffTheGrid
         raise "Validation Failed" unless validate_before_delete
         remove
       else
-        remove # don't bother checking if the host exists
+        remove # don't bother checking if the resource exists
       end
     end
 
