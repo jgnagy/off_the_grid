@@ -1,6 +1,6 @@
 # Off the Grid
 
-A Ruby library for interacting with SGE (Sun Grid Engine, Son of Grid Engine, Open Grid Engine, etc.), providing full-fledfed Ruby objects and familiar Ruby constructs and paradigms.
+A Ruby library for interacting with SGE ([Sun / Oracle Grid Engine](https://en.wikipedia.org/wiki/Oracle_Grid_Engine), [Son of Grid Engine](https://arc.liv.ac.uk/trac/SGE), [Open Grid Scheduler](http://gridscheduler.sourceforge.net/), etc.), providing full-fledged Ruby objects and familiar Ruby constructs and paradigms.
 
 There is still much work to be done and contributions are welcome. The goal is to ease automation around configuring and querying the grid.
 
