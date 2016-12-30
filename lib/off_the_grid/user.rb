@@ -1,9 +1,5 @@
 module OffTheGrid
-  class User
-    attr_reader :name
-
-    include GridResource
-
+  class User < NamedResource
     # Get the list of all SGE users
     def self.list
       `qconf -suserl`.chomp.split("\n").sort.collect {|name| self.new(name)}

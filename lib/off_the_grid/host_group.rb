@@ -1,8 +1,5 @@
 module OffTheGrid
-  class HostGroup
-    attr_reader :name
-    include GridResource
-
+  class HostGroup < NamedResource
     # Get the list of SGE host groups
     def self.list
       `qconf -shgrpl`.chomp.split("\n").sort.collect {|name| self.new(name)}

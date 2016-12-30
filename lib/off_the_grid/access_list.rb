@@ -1,8 +1,5 @@
 module OffTheGrid
-  class AccessList
-    attr_reader :name
-    include GridResource
-
+  class AccessList < NamedResource
     # Get the list of SGE access lists
     def self.list
       `qconf -sul`.chomp.split("\n").sort.collect {|name| self.new(name) }

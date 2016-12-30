@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
     'lib/off_the_grid/grid_resource.rb',
     'lib/off_the_grid/host_group.rb',
     'lib/off_the_grid/host.rb',
+    'lib/off_the_grid/named_resource.rb',
     'lib/off_the_grid/project.rb',
     'lib/off_the_grid/submit_host.rb',
     'lib/off_the_grid/templates/execute_host.rb',

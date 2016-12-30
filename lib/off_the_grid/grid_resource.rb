@@ -2,10 +2,6 @@ module OffTheGrid
   module GridResource
     include Comparable
 
-    def initalize(name)
-      @name = name
-    end
-
     def self.list
       []
     end

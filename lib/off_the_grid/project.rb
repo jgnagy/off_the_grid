@@ -1,8 +1,5 @@
 module OffTheGrid
-  class Project
-    attr_reader :name
-    include GridResource
-
+  class Project < NamedResource
     # Get the list of SGE projects
     def self.list
       `qconf -sprjl`.chomp.split("\n").sort.collect {|name| self.new(name) }
