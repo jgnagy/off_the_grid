@@ -1,8 +1,9 @@
 module OffTheGrid
+  # A class to represent SGE Access Lists
   class AccessList < NamedResource
     # Get the list of SGE access lists
     def self.list
-      `qconf -sul`.chomp.split("\n").sort.collect {|name| self.new(name) }
+      `qconf -sul`.chomp.split("\n").sort.collect { |name| new(name) }
     end
 
     def details
@@ -14,7 +15,7 @@ module OffTheGrid
         @unsaved_users ||= []
       else
         # Only returns users
-        extract_detail(:entries).select {|e| !e.match /^@/ }.collect {|user| User.new(user) }
+        extract_detail(:entries).select { |e| !e.match(/^@/) }.collect { |user| User.new(user) }
       end
     end
 
@@ -35,7 +36,7 @@ module OffTheGrid
 
     # Add an SGE access list
     def add
-      fail "Creating ACL Requires One or More Users" if users.empty?
+      raise 'Creating ACL Requires One or More Users' if users.empty?
       system("qconf -au #{users.map(&:name).join(',')} #{name}")
     end
 

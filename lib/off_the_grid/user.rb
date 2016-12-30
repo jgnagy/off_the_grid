@@ -1,13 +1,14 @@
 module OffTheGrid
+  # A class to represent SGE Users
   class User < NamedResource
     # Get the list of all SGE users
     def self.list
-      `qconf -suserl`.chomp.split("\n").sort.collect {|name| self.new(name)}
+      `qconf -suserl`.chomp.split("\n").sort.collect { |name| new(name) }
     end
 
     # Get the list of admin users
     def self.admins
-      `qconf -sm`.chomp.split("\n").sort.collect {|name| self.new(name)}
+      `qconf -sm`.chomp.split("\n").sort.collect { |name| new(name) }
     end
 
     # An alias for admins
@@ -17,29 +18,25 @@ module OffTheGrid
 
     # Get the list of operator users
     def self.operators
-      `qconf -so`.chomp.split("\n").sort.collect {|name| self.new(name)}
+      `qconf -so`.chomp.split("\n").sort.collect { |name| new(name) }
     end
 
     def details
       `qconf -suser #{name}`.chomp
     end
 
-    def default_project=(project)
-      @default_project = project
-    end
+    attr_writer :default_project
 
-    def default_project
-      @default_project
-    end
+    attr_reader :default_project
 
     def admin?
       admins.include?(self)
     end
 
-    alias_method :manager?, :admin?
+    alias manager? admin?
 
     def operator?
-      # TODO learn more about the difference between "operator" and "manager"
+      # TODO: learn more about the difference between "operator" and "manager"
       #  Maybe admins are always operators?
       operators.include?(self)
     end

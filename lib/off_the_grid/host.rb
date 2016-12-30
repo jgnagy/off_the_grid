@@ -1,4 +1,5 @@
 module OffTheGrid
+  # A base class for all SGE Host-type classes
   class Host
     attr_reader :hostname
     include GridResource
@@ -12,7 +13,7 @@ module OffTheGrid
     end
 
     def name=(hname)
-      hostname = hname
+      @hostname = hname
     end
   end
 end

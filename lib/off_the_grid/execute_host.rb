@@ -1,8 +1,9 @@
 module OffTheGrid
+  # A class to represent SGE Execute Hosts
   class ExecuteHost < Host
     # Get the list of SGE execute hosts
     def self.list
-      `qconf -sel`.chomp.split("\n").sort.collect {|name| self.new(name) }
+      `qconf -sel`.chomp.split("\n").sort.collect { |name| new(name) }
     end
 
     def details
@@ -19,19 +20,19 @@ module OffTheGrid
 
     def processors
       value = extract_detail(:processors).last
-      value.match(/[0-9]+/) ? Integer(value) : value
+      value =~ /[0-9]+/ ? Integer(value) : value
     end
 
     # very slow method for now
     def host_groups
-      HostGroup.list.select {|group| group.hosts.include?(self) }
+      HostGroup.list.select { |group| group.hosts.include?(self) }
     end
 
     private
 
     # Add an SGE execution host
     def add
-      # TODO construct a template
+      # TODO: construct a template
       Tempfile.open do |tmpfile|
         tmpfile.puts render(Templates::ExecuteHost::ERB)
         tmpfile.flush

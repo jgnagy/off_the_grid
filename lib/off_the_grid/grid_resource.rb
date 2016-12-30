@@ -1,4 +1,6 @@
 module OffTheGrid
+  # Handy helper methods for all Grid-related Resources
+  # Serves as a mixable base
   module GridResource
     include Comparable
 
@@ -11,21 +13,13 @@ module OffTheGrid
     end
 
     def save(safe = true)
-      if safe
-        raise "Validation Failed" unless validate_before_save
-        add
-      else
-        add # don't bother checking if the resource exists
-      end
+      raise 'Validation Failed' if safe && !validate_before_save
+      add
     end
 
     def delete(safe = true)
-      if safe
-        raise "Validation Failed" unless validate_before_delete
-        remove
-      else
-        remove # don't bother checking if the resource exists
-      end
+      raise 'Validation Failed' if safe && !validate_before_delete
+      remove
     end
 
     def extract_detail(detail, options = {})
@@ -34,11 +28,11 @@ module OffTheGrid
 
       values = []
       details.split("\n").each do |line|
-        if values.size > 0
+        unless values.empty?
           # Add follow-up lines from the weird word-wrapped output
-          line.match(/^( ){8}/) ? values << line : break
+          line =~ /^( ){8}/ ? values << line : break
         end
-        values << line if line.match /^#{detail.to_s} /
+        values << line if line =~ /^#{detail.to_s} /
       end
       values.join
             .gsub(/(#{detail.to_s} |\\|\s{2,})/, '')

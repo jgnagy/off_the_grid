@@ -1,8 +1,9 @@
 module OffTheGrid
+  # A class to represent SGE Submit Hosts
   class SubmitHost < Host
     # Get the list of SGE submit hosts
     def self.list
-      `qconf -ss`.chomp.split("\n").sort.collect {|name| self.new(name)}
+      `qconf -ss`.chomp.split("\n").sort.collect { |name| new(name) }
     end
 
     private

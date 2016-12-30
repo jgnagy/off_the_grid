@@ -1,7 +1,7 @@
 module OffTheGrid
   module Templates
     module ExecuteHost
-      ERB = <<EOF
+      ERB = <<EOF.freeze
 hostname              <%= @hostname %>
 load_scaling          NONE
 complex_values        NONE

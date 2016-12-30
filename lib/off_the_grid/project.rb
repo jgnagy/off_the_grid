@@ -1,8 +1,9 @@
 module OffTheGrid
+  # A class to represent SGE Projects
   class Project < NamedResource
     # Get the list of SGE projects
     def self.list
-      `qconf -sprjl`.chomp.split("\n").sort.collect {|name| self.new(name) }
+      `qconf -sprjl`.chomp.split("\n").sort.collect { |name| new(name) }
     end
 
     def details
@@ -31,7 +32,7 @@ module OffTheGrid
 
     # Add an SGE project
     def add
-      # TODO construct a template
+      # TODO: construct a template
       Tempfile.open do |tmpfile|
         tmpfile.puts render(Templates::Project::ERB)
         tmpfile.flush

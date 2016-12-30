@@ -1,7 +1,7 @@
 module OffTheGrid
   module Templates
     module Project
-      ERB = <<EOF
+      ERB = <<EOF.freeze
 name <%= @name %>
 oticket 0
 fshare 0
