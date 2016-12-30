@@ -1,6 +1,14 @@
 sudo: false
 language: ruby
 rvm:
-  - 2.2.5
-  - 2.3.3
+- 2.2.5
+- 2.3.3
 before_install: gem install bundler -v 1.12.5
+deploy:
+  provider: rubygems
+  api_key:
+    secure: NK0sBrud5lJqi5aDh15DJRqjk/qorQOJ5AQb5+HEM6RFjFhCHyRmxOXqmZhfWCT6HET8URVv7NZMSX6fJQBV7E62F8Rdh+KatEvpxfxpGfwuyOwEiR4/44Pp5a/je/i00lXWuF8ELF8Ol1hPoPmiBLW72pRFJWDsHfAJJ81/xCovWiU1QLcTM+RHEIqDEYb83G9BqYCtK/2QI5JKJ9+UXgSHe38rWxVEd1skrTjPWYTP4A1xLr2J7OHsFcXgL2IU2PqOzP/XmNt3VVLl16SnIiSa4Yg+k03+8d2ywpWpdLdnY194V/p4Muhtea3njAgTNAZzyMAUtEwdMzk4KJGOrm3wHNtuVj7Jr3FajQRSiHCL5K0oIZ+7t8yZgqvoH7iTF5TRZhspWD1g7yN6la4FPK/FU/R4Nn/LyjVPL1EDduLtzwEQ4g1qZsbrnVt3gfRM4otRmjtirc28pfP8SZRvKgNE79jtojeaD8uVyw8DQy4yDLsMMMDe/8A58bUVFo0kLzFgLDL69dki5vN1+BwrF/N2B1kp+zdae6ofCh8CihtOJP7rvpmJrYxBa+23CUJyLQjemqHTrof1r71imWXg6/nApIkJ30xnmEfDzDaDKqLoHNmDdnFdx8e98fqxTlAZRNs37bxrdwDOGHjCAMn6lgUYmUCPBov63XoKGf0GMek=
+  gem: off_the_grid
+  on:
+    tags: true
+    repo: knuedge/off_the_grid
