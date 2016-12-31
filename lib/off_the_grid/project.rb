@@ -11,13 +11,13 @@ module OffTheGrid
     end
 
     def acls
-      extract_detail(:acl).each do |acl|
+      extract_detail(:acl).collect do |acl|
         AccessList.new(acl)
       end
     end
 
     def xacls
-      extract_detail(:xacl).each do |acl|
+      extract_detail(:xacl).collect do |acl|
         AccessList.new(acl)
       end
     end
