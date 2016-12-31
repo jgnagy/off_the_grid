@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    off_the_grid (0.0.2)
+    off_the_grid (0.0.3)
 
 GEM
   remote: https://rubygems.org/
