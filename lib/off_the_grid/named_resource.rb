@@ -5,7 +5,7 @@ module OffTheGrid
 
     attr_reader :name
 
-    def initalize(name)
+    def initialize(name)
       @name = name
     end
   end
