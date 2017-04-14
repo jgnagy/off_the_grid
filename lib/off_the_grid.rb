@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Standard Library
 require 'erb'
 require 'tempfile'
@@ -6,6 +8,7 @@ require 'tempfile'
 require 'off_the_grid/version'
 require 'off_the_grid/erb_helpers'
 require 'off_the_grid/templates/execute_host'
+require 'off_the_grid/templates/host_group'
 require 'off_the_grid/templates/project'
 require 'off_the_grid/templates/user'
 require 'off_the_grid/grid_resource'

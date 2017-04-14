@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module OffTheGrid
   # A class to represent SGE Access Lists
   class AccessList < NamedResource
     # Get the list of SGE access lists
     def self.list
-      `qconf -sul`.chomp.split("\n").sort.collect { |name| new(name) }
+      `qconf -sul`.chomp.split("\n").sort.map { |name| new(name) }
     end
 
     def details
@@ -15,7 +17,7 @@ module OffTheGrid
         @unsaved_users ||= []
       else
         # Only returns users
-        extract_detail(:entries).select { |e| !e.match(/^@/) }.collect { |user| User.new(user) }
+        extract_detail(:entries).reject { |e| e.match(/^@/) }.map { |user| User.new(user) }
       end
     end
 

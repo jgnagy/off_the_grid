@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 module OffTheGrid
   module Templates
     module User
-      ERB = <<EOF.freeze
-name <%= @name %>
-oticket 0
-fshare 0
-delete_time 0
-default_project <%= @project %>
+      ERB = <<~EOF
+        name <%= @name %>
+        oticket 0
+        fshare 0
+        delete_time 0
+        default_project <%= @project %>
 EOF
     end
   end

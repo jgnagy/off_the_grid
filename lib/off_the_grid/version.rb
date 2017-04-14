@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # The base namespace for the OffTheGrid library
 module OffTheGrid
   def self.version

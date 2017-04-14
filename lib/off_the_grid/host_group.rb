@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OffTheGrid
   # A class to represent SGE Host Groups
   class HostGroup < NamedResource
@@ -14,11 +16,33 @@ module OffTheGrid
       `qconf -shgrp_tree #{name}`.chomp
     end
 
-    def hosts
-      extract_detail(:hostlist).map { |host| ExecuteHost.new(host) }
+    # Direct entries in this HostGroup's hostlist attribute
+    def entries
+      extract_detail(:hostlist).map do |host|
+        host =~ /^@/ ? HostGroup.new(host) : ExecuteHost.new(host)
+      end
     end
 
-    # TODO: Adding a Host to a HostGroup...
+    # A recursive listing of all hosts associated with this HostGroup
+    def hosts
+      entries.map do |entry|
+        entry.is_a?(HostGroup) ? entry.hosts : entry
+      end.flatten.uniq
+    end
+
+    def add_host(host)
+      @hostlist = entries
+      return true if @hostlist.include?(host)
+
+      @hostlist << host
+      # TODO: construct a template
+      Tempfile.open do |tmpfile|
+        tmpfile.puts render(Templates::HostGroup::ERB)
+        tmpfile.flush
+        system("qconf -Mhgrp #{tmpfile.path}")
+        sleep 5
+      end
+    end
 
     private
 

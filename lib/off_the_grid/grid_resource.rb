@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OffTheGrid
   # Handy helper methods for all Grid-related Resources
   # Serves as a mixable base

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OffTheGrid
   # A class to represent SGE Submit Hosts
   class SubmitHost < Host

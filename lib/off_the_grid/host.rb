@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OffTheGrid
   # A base class for all SGE Host-type classes
   class Host

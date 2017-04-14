@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OffTheGrid
   # ERB related helper methods
   module ErbHelpers

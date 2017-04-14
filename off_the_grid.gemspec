@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'lib/off_the_grid/version'
 
 # rubocop:disable Metrics/BlockLength
@@ -16,7 +18,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.platform    = Gem::Platform::RUBY
 
-  s.required_ruby_version = '~> 2.2'
+  s.required_ruby_version = '~> 2.3'
   s.post_install_message  = 'Thanks for installing Off The Grid!'
   s.homepage = 'https://github.com/knuedge/off_the_grid'
 
@@ -35,4 +37,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'yard',    '~> 0.8'
   s.add_development_dependency 'travis', '~> 1.8'
   s.add_development_dependency 'simplecov'
+  s.add_development_dependency 'coveralls'
+  s.add_development_dependency 'byebug'
 end
